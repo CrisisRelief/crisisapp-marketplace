@@ -1,6 +1,3 @@
----
-marp:true
----
 ## CrisisApp Marketplace
 
 #### 2nd Apr 2020
