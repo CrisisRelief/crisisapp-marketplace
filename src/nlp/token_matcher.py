@@ -5,6 +5,7 @@ from spacy import displacy
 from typing import List
 
 from src.patterns import accommodation as acc
+from src.patterns import pickups as pickup
 
 nlp = spacy.load('en_core_web_sm')
 matcher = Matcher(nlp.vocab)
@@ -27,7 +28,7 @@ def collect_sents(matcher, doc:spacy.tokens.doc.Doc, i:int, matches:List[Matcher
     end_span =  span.end_char - sent.start_char,
 
     match_ents = [{
-        "span" : span,
+        "span" : str(span),
         "label": string_id
     }]
     matched_sents.append({"text": sent.text, "ents": match_ents})
@@ -40,33 +41,23 @@ def add_patterns(pattern_types:List) -> None:
             for pattern in acc.patterns:
                 matcher.add(pattern['LABEL'], collect_sents, pattern['pattern'])
 
+        if pattern_type is "pickups":
+            for pattern in pickup.patterns:
+                matcher.add(pattern['LABEL'], collect_sents, pattern['pattern'])
+                
     return
 
 def detect_patterns(content:List) -> List:
     """
     """
+    global matched_sents
     for txt in content:
         doc = nlp(txt)
         matches = matcher(doc)
 
-    return matched_sents
+    op = matched_sents
+    matched_sents = []
+    return op
 
+add_patterns(["pickups"])
 
-
-messages = [
-    "we will provide free accommodation",
-    "we will try to accommodate",
-    "we will provide assistance",
-    "we will provide little bit of lodging",
-    "we will provide little bit of assistance in giving our boarding house and bunk beds",
-    "I've got bunk beds and a bungalow",
-    "we should use the govt. run student hostels",
-    "road side inns available for accommodation",
-    "we have a place to rent",
-    "have a restaurant to deliver food"
-]
-
-add_patterns(["accommodation"])
-
-op = detect_patterns(messages)
-print(op)
