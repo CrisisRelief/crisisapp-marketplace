@@ -10,7 +10,7 @@ req_offer = {
     "crisis_name" : "",
     "submission_type" : "",
     "full_name" : "",
-    "req_offer_cat" : "",
+    "req_offer_cat" : [],
     "req_offer_cat_other" : 1,
     "req_offer_details" : "",
     "email" :"",
@@ -21,10 +21,13 @@ req_offer = {
     "loc_post_code" : "",
 
     "derived_attrs": {
-        "online_request": 1,
+        "online_request": False,
         "lat_long" : "",
         "time_sensitive": 1
         }
 }
 
     
+DEFAULT_COUNTRY_CODE = "AU"
+DEFAULT_DISTANCE_THRESHOLD = 100
+DEFAULT_DISTANCE_METRIC = "KM"
