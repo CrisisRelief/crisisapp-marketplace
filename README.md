@@ -1,23 +1,23 @@
 ## CrisisApp Marketplace
 
-#### 2nd Apr 2020
+#### 3rd Apr 2020
 
 ### Background
 
-[CrisisApp](https://crisis.app) has a feature which connects two sets of people where one set is a group of people who have the resources(time, money etc.)  to offer help and the other set is a group of people who are in need of help. 
+[CrisisApp](https://crisis.app) has a feature which connects two sets of people where one set is a group of people who have the resources(time, money etc.) to offer help and the other set is a group of people who are in need of help. 
 
 Broadly speaking, there are two 5 categories of help that can be offered/availed. 
-- Accommodations/Housing
+- Accommodation/Housing
 - Donations eg: household goods, furniture, money
 - Health, Medical, First-Aid
 - Pet, Livestock, Wildlife boarding accommodation
 - Pickup or delivery of groceries, donations, medications
 
-The source of data are webform submissions on the website, social media such as Twitter, Facebook(FB) and News articles. Closed FB groups seem to be the main source of data until the web form submissions become popular enough where the traffic significantly exceeds those that is seen in social media.
+The source of data are webform submissions on the website, social media such as Twitter, Facebook(FB) and News articles. Closed FB groups seem to be the main source of data until the web form submissions become popular enough where the traffic significantly exceeds those seen in social media.
 
 ### Approach
 
-The general approach would be identify requsets and place them into the right buckets or categories. Once this is done, identify matches based on relevance, proximity of distance and other pre-defined criteria. 
+The general approach would be identify requests and place them into the right buckets or categories. Once this is done, identify matches based on relevance, proximity of distance and other pre-defined criteria. 
 
 ![High Level Approach](Crisisapp-marketplace-highlevel-wflow.png)
 
@@ -64,6 +64,7 @@ Tests on sample data is underway at the moment.
 - Create a sufficiently large sample set which can be used as a labelled dataset to build a supervised learning model. 
 - Design reccommendation engine to connect the two sets of people 
 - Extend our pattern options for engaging with shorter social media based posts
+- vary our pattern to detect self-declared, public domain records of COVID-19 or crisis impacted individual for outreach + engagement
 
 
 
