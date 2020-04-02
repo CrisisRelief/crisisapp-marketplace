@@ -39,10 +39,10 @@ These work best if the size of the documents that need to be matched are large e
     - Match quality is relatively better than the first option
     - Evaluated Sentence embeddings from [EPFML's github repo](https://github.com/epfml/sent2vec)
 - Spacy's Similarity based on Word2Vec
-    - Match score consistenytly high for all documents
+    - Match score consistently high for all documents
     - Hard to distinguish between competing documents 
 
-Some of the techniques above can be fine tuned but given the time constraint, it is better off considering a much simpler approach detailed below. 
+Some of the techniques above can be fine tuned but given time constraints, better off considering a much simpler approach detailed below. 
 
 ##### 2. Rule based search and filter
 
