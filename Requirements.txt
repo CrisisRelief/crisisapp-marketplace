@@ -1,0 +1,5 @@
+spacy==2.2.3
+pgeocode==0.2.1
+tweepy==3.8.0
+TwitterAPI==2.5.9
+pymongo==3.7.2
