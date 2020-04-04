@@ -14,6 +14,10 @@ labels = [
     { "transportation" : "cabs  taxi, transportation, transport services, 13cabs, silver cabs, uber, didi, ola, hail service travel transit commuting subway transport\
     taxica, cabbie, buses, trains, metro b" }
 ]
-    
 
-    
+category_info = [
+    {
+        "cat_type" : "Request or offers related to Accommodation",
+        "labels" : ["ACCOMMODATE", "ACC_LEMMAS", "ACC_REGEX" ]
+    }
+]
