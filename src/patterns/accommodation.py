@@ -5,7 +5,7 @@
 pattern_details1 = {
     "LABEL" : "ACCOMMODATE",
     "pattern" : [
-        { "TEXT" : { "REGEX" : "accommodate" } }
+        { "TEXT" : { "REGEX" : "accommodat*" } }
     ]
 }
 
@@ -26,6 +26,7 @@ pattern_details3 = {
 }
 
 patterns = [
-    pattern_details1, pattern_details2, pattern_details3
+    pattern_details1 #pattern_details2, pattern_details3
 ]
+
 

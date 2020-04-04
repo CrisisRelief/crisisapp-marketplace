@@ -13,7 +13,16 @@ matched_sents = []
 
 def collect_sents(matcher, doc:spacy.tokens.doc.Doc, i:int, matches:List[Matcher]) -> List:
     """
-            Args:
+    Callback function to collect spans of interest from sentences in a block of text.
+
+    Args:
+        matcher (spacy.Matcher): matcher object set to nlp.vocab
+        doc (spacy.tokens.Doc): spacy Doc object
+        i (int): index for the match
+        matches (List): list of matches
+                        
+    Returns:
+        None
     """
     match_id, start, end = matches[i]
     # Matched span
@@ -33,9 +42,18 @@ def collect_sents(matcher, doc:spacy.tokens.doc.Doc, i:int, matches:List[Matcher
     }]
     matched_sents.append({"text": sent.text, "ents": match_ents})
 
-    return
+    return 
 
 def add_patterns(pattern_types:List) -> None:
+    '''
+    Add predefined patterns to the pattern library
+
+    Args:
+        pattern_types (List): list of the patterns of interest
+
+    Returns:
+        None
+    '''
     for pattern_type in pattern_types:
         if pattern_type is "accommodation":
             for pattern in acc.patterns:
@@ -49,6 +67,11 @@ def add_patterns(pattern_types:List) -> None:
 
 def detect_patterns(content:List) -> List:
     """
+    Detects patterns of interest from a list of blocks of text
+    Args:
+        content (List): list of text blocks from which patterns need to be detected
+    Returns:
+        op (List): list of matched patterns with spans and related info
     """
     global matched_sents
     for txt in content:
@@ -59,5 +82,6 @@ def detect_patterns(content:List) -> List:
     matched_sents = []
     return op
 
-add_patterns(["pickups"])
+
+add_patterns(["pickups", "accommodation"])
 
