@@ -8,6 +8,9 @@ class match_request(object):
 
     def __init__(self, country_type='AU'):
         try:
+            '''
+            Country Type defaults to Australia. Update the config file to modify
+            '''
             self.geocode_dist = pgeocode.GeoDistance(country_type)
         except Exception as e:
             fricles_logger.warning('Failed to load geocode info for ' + \
@@ -16,23 +19,34 @@ class match_request(object):
 
     def get_nlp_match_score(self, req_details:str, offer_details:str) -> float:
         '''
+        Get a match score based on the content in 'other details' in the requests/offers
+        This can be used to up/down the overall match score for req/offers or can be used
+        for requests/offers which are not categorised. 
+
         Args:
-        req_details (str): free text details of request
-        offer_details(str): free text  detals of offer
-        @todo: to be implemented
+           req_details (str): free text in details provided by the user for requests
+           offer_details (str): free text in details provided by the user for offers
+
+        Returns:
+            score (float): Match score
         '''
-        return 0
+        score = 0
+        return score
 
     def match_req_with_offer(self, req:req_offer_cfg, offer:req_offer_cfg) -> float:
         '''
-        Args:
-            req: details of a single request
-            offer: details of a single offer
-        Returns(float): match score between 0 and 1
-        Desc: Matches a given offer with a given req. This function takes in only
-        one req and offer so that it can be a parallelized operation
+        Match a specific request with offer based on the fields present as part of request/offer datastructure
+        This function takes in only one req and offer so that it can be a parallelized operation
 
         Match score = f(crisis_name, req_type, nlp_match, location_proximity)
+
+        Args:
+            req (req_offer_cfg): details of a single request
+            offer (req_offer_cfg): details of a single offer
+        
+        Returns:
+            score (float): match score between 0 and 1
+
         '''
         score = 0
         if req['crisis_name'] != offer['crisis_name']:
@@ -71,7 +85,15 @@ class match_request(object):
         return score
 
     def match_reqs_with_offers(self, reqs:List, offers:List) -> List[Dict]:
+        '''
+        Match a list of requests and offers, best suited for distributed execution
+        Args:
+            reqs (List): list of requests
+            offers (List): list of offeres
 
+        Returns:
+            matches (List): list of matches with details of request, offer and  match score
+        '''
         matches = []
         for req in reqs:
             for offer in offers:
