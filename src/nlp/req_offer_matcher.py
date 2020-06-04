@@ -129,6 +129,8 @@ class match_request(object):
         for req in reqs:
             for offer in offers:
                 scores = self.match_req_with_offer(req, offer, nlp_match_only)
+                if type(scores) != dict:
+                    continue
                 match = {}
                 match['overall_score'] = scores['overall_score']
                 match['request_serial_number'] = req['serial_number']

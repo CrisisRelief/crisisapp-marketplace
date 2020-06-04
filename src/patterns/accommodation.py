@@ -2,6 +2,14 @@
 #Patterns to detect accommodation related queries
 
 
+pattern_details0 = {
+    "LABEL" : "PANDEMIC",
+    "pattern" : [
+        { "TEXT" : { "REGEX" : "isolation" } }
+    ]
+}
+
+
 pattern_details1 = {
     "LABEL" : "ACCOMMODATE",
     "pattern" : [
@@ -26,7 +34,8 @@ pattern_details3 = {
 }
 
 patterns = [
-    pattern_details1 #pattern_details2, pattern_details3
+    #pattern_details1,pattern_details2, pattern_details3
+    pattern_details0
 ]
 
 

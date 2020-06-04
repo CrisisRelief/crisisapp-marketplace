@@ -3,7 +3,9 @@ import copy
 import src.common.req_offer_template as req_offer_cfg
 
 
-f = "test/request_offer_help.csv"
+f = "test/request_offer_help_240420.csv"
+ofile = "request_offer_output_cats_240420.csv"
+
 
 def read_test_file(f):
 
@@ -36,8 +38,8 @@ def read_test_file(f):
         #if len(list_of_cats) == 1 and 'Other - please detail' in row['Request/offer category']:
         #    continue
 
-        if not 'Other - please detail' in row['Request/offer category']:
-            continue
+        #if not 'Other - please detail' in row['Request/offer category']:
+        #    continue
         
         sub['serial_number'] = row['Serial number']
         sub['req_offer_cat'] = list_of_cats
@@ -69,7 +71,7 @@ mr = match_request()
 matches = mr.match_reqs_with_offers(r, o, nlp_match_only=False)
 
 op = pd.DataFrame(matches)
-op.to_cs("match_outputs.csv", index = False)
+op.to_csv(ofile, index = False)
 
 
 

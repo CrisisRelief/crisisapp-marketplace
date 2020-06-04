@@ -6,6 +6,7 @@ from typing import List
 
 from src.patterns import accommodation as acc
 from src.patterns import pickups as pickup
+from src.patterns import outbreak_pandemic_control as op
 
 nlp = spacy.load('en_core_web_sm')
 matcher = Matcher(nlp.vocab)
@@ -55,6 +56,10 @@ def add_patterns(pattern_types:List) -> None:
         None
     '''
     for pattern_type in pattern_types:
+        if pattern_type is "pandemic":
+            for pattern in acc.patterns:
+                matcher.add(pattern['LABEL'], collect_sents, pattern['pattern'])
+                
         if pattern_type is "accommodation":
             for pattern in acc.patterns:
                 matcher.add(pattern['LABEL'], collect_sents, pattern['pattern'])
@@ -83,5 +88,6 @@ def detect_patterns(content:List) -> List:
     return op
 
 
-add_patterns(["pickups", "accommodation"])
+add_patterns(["pandemic"])
+             
 
